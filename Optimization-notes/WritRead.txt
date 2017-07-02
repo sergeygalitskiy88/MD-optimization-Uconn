@@ -1,0 +1,26 @@
+Here is comments on better usage of writting/reading routines in Fortran
+
+--01.07.2017 (Sergey)
+	https://docs.oracle.com/cd/E19957-01/805-4939/6j4m0vnaf/index.html 
+	
+	1)  General. 
+	1.1) open  ONLY for reading . Status='old' + action='read' (or READONLY):
+		open(unit=15, file="data.txt", status='old', access='sequential', form='formatted', action='read' )
+	1.2) open ONLY for writting new file. status='new' + status='WRITE' :
+		open(unit=15, file="data.txt", status='new', access='sequential', form='formatted', action='WRITE' )
+	1.3) open both for writtng and reading. Less in use. status= 'READWRITE'
+	1.4) for temporal files: STATUS='SCRATCH' - will be deleted after execution of program
+	
+	2) Handling errors.
+	   IOSTAT=ios. Gives "0" if akk goes good. >0 if some error occured
+	   ERR=101. redirect to label 101 if error occurs	
+	   ENd=102. IF end of file is reached
+	
+	3) Writing/reading binars.
+	   open(unit=8,file='gfortran.bin', form='UNFORMATTED',ERR=1000)
+	    write(8,ERR=101)i, x
+	   close (8)
+	   
+ 	   open(unit=8,file='gfortran.bin',form='UNFORMATTED',status='OLD')
+ 	    read(8,END=102,ERR=1001) a,b
+	   close (8)

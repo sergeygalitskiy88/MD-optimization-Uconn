@@ -1,0 +1,21 @@
+Here is comments on better usage of memory in Fortran
+
+--01.07.2017 (Sergey)
+	https://www.ibm.com/support/knowledgecenter/en/SSGH4D_13.1.0/com.ibm.xlf131.aix.doc/language_ref/alloc.html#alloc
+
+	1)  General. (FORTRAN 2003 +)
+	
+	ALLOCATE (alloc-list [, STAT=stat-var][, SOURCE=src-ref],ERRMSG= errmsg_variable)
+	
+		stat_variable 					A scalar integer variable.  status of allocation
+		errmsg_variable (Fortran 2003)	A scalar character variable. code of error
+		source_expr (Fortran 2003)		An expression which is scalar or has the same rank as allocate_object. not vvery needed
+		
+	2) In procedure automative arrays should be allocated (automatically remove after procedure ends)
+	
+	3) !!! Procedures with arrays as parameters !! Two variants to maintain
+		3.1) Structure of such procdure should be described in module + use in prog
+		3.2) additionaly transfer the size of parameter arrays into subroutine
+	 
+	4) for lafre arrays transfer into procedure: ....?
+		

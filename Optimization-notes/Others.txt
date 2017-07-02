@@ -1,0 +1,8 @@
+Here is comments on better usage of writting/reading routines in Fortran
+
+--01.07.2017 (Sergey)
+	https://docs.oracle.com/cd/E19957-01/805-4939/6j4m0vnaf/index.html 
+	
+	1) CALL EXECUTE_COMMAND_LINE
+	   Example	 CALL EXECUTE_COMMAND_LINE("rm nlines.tempfile") ! Remove nlines.file
+	   Doesn`t work with  intelics/2013.1.039-compiler but works with pgi16 and intelics/2017 
